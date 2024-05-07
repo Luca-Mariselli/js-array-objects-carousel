@@ -66,14 +66,27 @@ function inizializzaSlider() {
     });
 }
 
-
+// aggiungo funzione per avanzare in automatico ogni 3 secondi al click del bottone
+function avanzaAutomaticamente() {
+    intervalloTimer = setInterval(function() {
+        indiceCorrente = (indiceCorrente + 1) % images.length;
+        aggiornaSlide(indiceCorrente);
+    }, 3000); // Avanza ogni 3 secondi
+    
+}
 
 // variabili per prendere elementi da HTML
 let container = document.getElementById(`container`) 
-const btnUp = document.getElementById('btn-up');
-const btnDown = document.getElementById('btn-down');
+let btnUp = document.getElementById('btn-up');
+let btnDown = document.getElementById('btn-down');
 
+let btnAuto = document.getElementById('auto');
+let indiceCorrente = 0; //dichiaro la variabile fuori altrimenti avanzamento automatico non funziona
 
+// avanzo autamaticamente al click del bottone
+btnAuto.addEventListener('click', function() {
+    avanzaAutomaticamente();
+});
 
 
 const images = [
