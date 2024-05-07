@@ -28,11 +28,17 @@
 // :gift: BONUS #3
 // Aggiungere bottoni di start/stop e di inversione del meccanismo di autoplay.
 
-let myImgs = document.getElementsByClassName(`img-w`)
 
-let imgVisualizzata = 0
-let ultimaImg = myImgs.length - 1
-let nextImg
+
+// funzione per stampare in pagina
+function stampaInPagina (titolo, descrizione, immagine){
+    return  `
+    <img class="img-w" src="./${immagine}" alt="">
+    <div class="my-fixed-txt">
+        <h2>${titolo}</h2>
+        ${descrizione}
+    </div>`
+}
 
 const images = [
     {
@@ -57,32 +63,50 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
-   
+
+let container = document.getElementById(`container`) 
+
+for(let i = 0; i < images.length; i++){
+    let slide = images[i]
+    container.innerHTML = stampaInPagina(membro.nome, membro.ruolo, membro.immagine)
+}
 
 
-document.getElementById(`btn-down`).addEventListener(`click`, function(){
-    myImgs[imgVisualizzata].classList.remove(`show`)
-    if(imgVisualizzata < myImgs.length - 1){
-        imgVisualizzata++
-    } else{
-        imgVisualizzata = 0
-    }
-    myImgs[imgVisualizzata].classList.add(`show`)
-})
 
-document.getElementById(`btn-up`).addEventListener(`click`, function(){
-    myImgs[imgVisualizzata].classList.remove(`show`)
 
-    if(imgVisualizzata == 0){
-        console.log(`sei sulla 0`)
-        imgVisualizzata = ultimaImg
-    }else{
-        console.log(`non sei sulla 0`)
-        imgVisualizzata--
-    }
-    myImgs[imgVisualizzata].classList.add(`show`)
 
-})
+
+
+
+// let myImgs = document.getElementsByClassName(`img-w`)
+
+// let imgVisualizzata = 0
+// let ultimaImg = myImgs.length - 1
+// let nextImg
+
+// document.getElementById(`btn-down`).addEventListener(`click`, function(){
+//     myImgs[imgVisualizzata].classList.remove(`show`)
+//     if(imgVisualizzata < myImgs.length - 1){
+//         imgVisualizzata++
+//     } else{
+//         imgVisualizzata = 0
+//     }
+//     myImgs[imgVisualizzata].classList.add(`show`)
+// })
+
+// document.getElementById(`btn-up`).addEventListener(`click`, function(){
+//     myImgs[imgVisualizzata].classList.remove(`show`)
+
+//     if(imgVisualizzata == 0){
+//         console.log(`sei sulla 0`)
+//         imgVisualizzata = ultimaImg
+//     }else{
+//         console.log(`non sei sulla 0`)
+//         imgVisualizzata--
+//     }
+//     myImgs[imgVisualizzata].classList.add(`show`)
+
+// })
 
 
 
