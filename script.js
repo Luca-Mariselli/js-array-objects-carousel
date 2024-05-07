@@ -68,7 +68,7 @@ let container = document.getElementById(`container`)
 
 for(let i = 0; i < images.length; i++){
     let slide = images[i]
-    container.innerHTML = stampaInPagina(membro.nome, membro.ruolo, membro.immagine)
+    container.innerHTML += stampaInPagina(slide.title, slide.text, slide.image)
 }
 
 
