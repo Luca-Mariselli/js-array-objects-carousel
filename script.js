@@ -40,10 +40,46 @@ function stampaInPagina (titolo, descrizione, immagine){
     </div>`
 }
 
+// funzione per stampare in pagina aggiornando slides tramite indice
+function aggiornaSlide(indice) {
+    container.innerHTML = stampaInPagina(
+        images[indice].title,
+        images[indice].text,
+        images[indice].image
+    );
+}
+
+// aggiungo funzione avanti e indietro con click di bottoni che si lega con aggiornaslide (e quindi stampaInPagina)
+function inizializzaSlider() {
+    let indiceCorrente = 0;
+
+    aggiornaSlide(indiceCorrente);
+
+    btnDown.addEventListener('click', function() {
+        indiceCorrente = (indiceCorrente + 1) % images.length;
+        aggiornaSlide(indiceCorrente);
+    });
+
+    btnUp.addEventListener('click', function() {
+        indiceCorrente = (indiceCorrente - 1 + images.length) % images.length;
+        aggiornaSlide(indiceCorrente);
+    });
+}
+
+
+
+// variabili per prendere elementi da HTML
+let container = document.getElementById(`container`) 
+const btnUp = document.getElementById('btn-up');
+const btnDown = document.getElementById('btn-down');
+
+
+
+
 const images = [
     {
         image: 'img/01.webp',
-        title: 'Marvel\'s Spiderman Miles Morale',
+        title: 'Marvel\'s Spiderman Miles Morales',
         text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
     }, {
         image: 'img/02.webp',
@@ -64,49 +100,4 @@ const images = [
     }
 ];
 
-let container = document.getElementById(`container`) 
-
-for(let i = 0; i < images.length; i++){
-    let slide = images[i]
-    container.innerHTML += stampaInPagina(slide.title, slide.text, slide.image)
-}
-
-
-
-
-
-
-
-
-// let myImgs = document.getElementsByClassName(`img-w`)
-
-// let imgVisualizzata = 0
-// let ultimaImg = myImgs.length - 1
-// let nextImg
-
-// document.getElementById(`btn-down`).addEventListener(`click`, function(){
-//     myImgs[imgVisualizzata].classList.remove(`show`)
-//     if(imgVisualizzata < myImgs.length - 1){
-//         imgVisualizzata++
-//     } else{
-//         imgVisualizzata = 0
-//     }
-//     myImgs[imgVisualizzata].classList.add(`show`)
-// })
-
-// document.getElementById(`btn-up`).addEventListener(`click`, function(){
-//     myImgs[imgVisualizzata].classList.remove(`show`)
-
-//     if(imgVisualizzata == 0){
-//         console.log(`sei sulla 0`)
-//         imgVisualizzata = ultimaImg
-//     }else{
-//         console.log(`non sei sulla 0`)
-//         imgVisualizzata--
-//     }
-//     myImgs[imgVisualizzata].classList.add(`show`)
-
-// })
-
-
-
+inizializzaSlider();
